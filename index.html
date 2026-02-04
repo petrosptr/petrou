@@ -8,7 +8,7 @@
 
   <style>
     :root{
-      /* Dark-first (like the examples) */
+      /* Dark-first (like the reference) */
       --bg: #0b0f14;
       --panel: rgba(255,255,255,.04);
       --panel2: rgba(255,255,255,.06);
@@ -18,7 +18,12 @@
       --shadow: 0 18px 60px rgba(0,0,0,.55);
 
       --radius: 18px;
-      --max: 720px;
+
+      /* Page max width (outer container) */
+      --max: 820px;
+
+      /* Actual content column (centers the “ink”) */
+      --col: 560px;
 
       --chip: rgba(255,255,255,.08);
       --chipText: rgba(255,255,255,.78);
@@ -28,7 +33,7 @@
       --btnBorder: rgba(255,255,255,.12);
     }
 
-    /* If user prefers light, switch to a soft, premium light palette */
+    /* Light mode */
     @media (prefers-color-scheme: light){
       :root{
         --bg: #f4f6f8;
@@ -50,6 +55,7 @@
 
     *{ box-sizing: border-box; }
     html,body{ height:100%; }
+
     body{
       margin:0;
       background: var(--bg);
@@ -60,7 +66,7 @@
       line-height: 1.65;
     }
 
-    /* Subtle vignette / depth like modern personal pages */
+    /* Subtle glow for depth */
     .bg-glow{
       position: fixed;
       inset: -40vmax;
@@ -84,6 +90,13 @@
     main{
       width: 100%;
       max-width: var(--max);
+    }
+
+    /* NEW: centered content column so it doesn't feel left-heavy */
+    .col{
+      width: 100%;
+      max-width: var(--col);
+      margin: 0 auto;
     }
 
     /* Avatar + title block (mobile-first) */
@@ -143,7 +156,7 @@
       font-size: 1.12rem;
       letter-spacing: -0.01em;
       color: var(--text);
-      max-width: 54ch;
+      /* removed max-width so the column controls width */
     }
 
     .chips{
@@ -165,7 +178,7 @@
       user-select: none;
     }
 
-    /* Social row like the example: icon button + label */
+    /* Social row */
     .socials{
       margin-top: 12px;
       display: flex;
@@ -216,14 +229,16 @@
       padding: 0 2px;
     }
 
-    /* Desktop polish: place avatar left of title like zoma.dev */
+    /* Desktop polish: avatar left of title but column stays centered */
     @media (min-width: 700px){
       .wrap{ padding: 54px 22px 70px; }
+
       .top{
         grid-template-columns: 110px 1fr;
         align-items: center;
         gap: 18px;
       }
+
       .avatar{ width: 104px; height: 104px; }
       h1{ font-size: 2.85rem; }
       .tagline{ font-size: 1.1rem; }
@@ -236,75 +251,76 @@
 
   <div class="wrap">
     <main>
-      <section class="top" aria-label="Header">
-        <!-- Placeholder image: replace src with your photo later (e.g., /assets/petros.jpg) -->
-        <div class="avatar">
-          <img
-            alt="Petros profile photo"
-            src='data:image/svg+xml;utf8,
-              <svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
-                <defs>
-                  <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="%2394a3b8" stop-opacity="0.65"/>
-                    <stop offset="1" stop-color="%2364748b" stop-opacity="0.65"/>
-                  </linearGradient>
-                </defs>
-                <rect width="240" height="240" rx="120" fill="url(%23g)"/>
-                <circle cx="120" cy="96" r="44" fill="%23ffffff" fill-opacity="0.28"/>
-                <path d="M48 212c18-42 52-64 72-64s54 22 72 64" fill="%23ffffff" fill-opacity="0.22"/>
-              </svg>'
-          />
+      <div class="col">
+        <section class="top" aria-label="Header">
+          <!-- Placeholder image: replace src with your photo later (e.g., /assets/petros.jpg) -->
+          <div class="avatar">
+            <img
+              alt="Petros profile photo"
+              src='data:image/svg+xml;utf8,
+                <svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+                  <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="%2394a3b8" stop-opacity="0.65"/>
+                      <stop offset="1" stop-color="%2364748b" stop-opacity="0.65"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="240" height="240" rx="120" fill="url(%23g)"/>
+                  <circle cx="120" cy="96" r="44" fill="%23ffffff" fill-opacity="0.28"/>
+                  <path d="M48 212c18-42 52-64 72-64s54 22 72 64" fill="%23ffffff" fill-opacity="0.22"/>
+                </svg>'
+            />
+          </div>
+
+          <div>
+            <h1>Petros Kkallis Petrou</h1>
+            <p class="tagline">Product. Systems. Craft.</p>
+          </div>
+        </section>
+
+        <div class="label-row" aria-hidden="true">
+          <span class="label">/about</span>
         </div>
 
-        <div>
-          <h1>Petros Kkallis Petrou</h1>
-          <p class="tagline">Product. Systems. Craft.</p>
+        <p class="about">
+          Based in Cyprus. I focus on the intersection of technology, UX, and business—turning complex problems into clear,
+          buildable product direction and aligning teams to ship thoughtful user experiences.
+        </p>
+
+        <div class="chips" aria-label="Focus areas">
+          <span class="chip">Fintech</span>
+          <span class="chip">Product</span>
+          <span class="chip">UX</span>
+          <span class="chip">Systems</span>
         </div>
-      </section>
 
-      <div class="label-row" aria-hidden="true">
-        <span class="label">/about</span>
+        <div class="label-row" aria-hidden="true">
+          <span class="label">/social</span>
+        </div>
+
+        <nav class="socials" aria-label="Social links">
+          <!-- Replace # with your LinkedIn URL -->
+          <a class="social" href="#" rel="me noopener" target="_blank">
+            <span class="icon" aria-hidden="true">
+              <!-- LinkedIn icon -->
+              <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.68H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </span>
+            LinkedIn
+          </a>
+
+          <a class="social" href="mailto:hello@petrou.org">
+            <span class="icon" aria-hidden="true">
+              <!-- Mail icon -->
+              <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+            </span>
+            Email
+          </a>
+        </nav>
+
+        <footer>
+          © <span id="y"></span> Petros
+        </footer>
       </div>
-
-      <p class="about">
-        Based in Cyprus. I focus on the intersection of technology, UX, and business—turning complex problems into clear,
-        buildable product direction and aligning teams to ship thoughtful user experiences.
-      </p>
-
-      <!-- Optional: small “focus tags” like zoma.dev -->
-      <div class="chips" aria-label="Focus areas">
-        <span class="chip">Fintech</span>
-        <span class="chip">Product</span>
-        <span class="chip">UX</span>
-        <span class="chip">Systems</span>
-      </div>
-
-      <div class="label-row" aria-hidden="true">
-        <span class="label">/social</span>
-      </div>
-
-      <nav class="socials" aria-label="Social links">
-        <!-- Replace # with your LinkedIn URL -->
-        <a class="social" href="#" rel="me noopener" target="_blank">
-          <span class="icon" aria-hidden="true">
-            <!-- LinkedIn icon -->
-            <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.68H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-          </span>
-          LinkedIn
-        </a>
-
-        <a class="social" href="mailto:hello@petrou.org">
-          <span class="icon" aria-hidden="true">
-            <!-- Mail icon -->
-            <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
-          </span>
-          Email
-        </a>
-      </nav>
-
-      <footer>
-        © <span id="y"></span> Petros
-      </footer>
     </main>
   </div>
 
