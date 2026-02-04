@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Petros Kkallis Petrou — Product. Systems. Craft." />
+  <title>Petros Kkallis Petrou</title>
+
+  <style>
+    :root{
+      /* Dark-first (like the examples) */
+      --bg: #0b0f14;
+      --panel: rgba(255,255,255,.04);
+      --panel2: rgba(255,255,255,.06);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.62);
+      --hairline: rgba(255,255,255,.10);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+
+      --radius: 18px;
+      --max: 720px;
+
+      --chip: rgba(255,255,255,.08);
+      --chipText: rgba(255,255,255,.78);
+
+      --btnBg: rgba(255,255,255,.06);
+      --btnBgHover: rgba(255,255,255,.10);
+      --btnBorder: rgba(255,255,255,.12);
+    }
+
+    /* If user prefers light, switch to a soft, premium light palette */
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f4f6f8;
+        --panel: rgba(15,23,42,.04);
+        --panel2: rgba(15,23,42,.06);
+        --text: rgba(15,23,42,.92);
+        --muted: rgba(15,23,42,.62);
+        --hairline: rgba(15,23,42,.12);
+        --shadow: 0 18px 60px rgba(15,23,42,.10);
+
+        --chip: rgba(15,23,42,.06);
+        --chipText: rgba(15,23,42,.72);
+
+        --btnBg: rgba(15,23,42,.05);
+        --btnBgHover: rgba(15,23,42,.08);
+        --btnBorder: rgba(15,23,42,.10);
+      }
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      line-height: 1.65;
+    }
+
+    /* Subtle vignette / depth like modern personal pages */
+    .bg-glow{
+      position: fixed;
+      inset: -40vmax;
+      pointer-events: none;
+      background:
+        radial-gradient(closest-side, rgba(120,140,255,.14), transparent 60%),
+        radial-gradient(closest-side, rgba(255,120,180,.10), transparent 60%),
+        radial-gradient(closest-side, rgba(100,220,200,.10), transparent 60%);
+      filter: blur(40px);
+      transform: translate3d(0,0,0);
+      opacity: .55;
+    }
+
+    .wrap{
+      min-height: 100%;
+      display: grid;
+      place-items: start center;
+      padding: 28px 16px 48px;
+    }
+
+    main{
+      width: 100%;
+      max-width: var(--max);
+    }
+
+    /* Avatar + title block (mobile-first) */
+    .top{
+      display: grid;
+      gap: 14px;
+      padding: 8px 2px 0;
+    }
+
+    .avatar{
+      width: 92px;
+      height: 92px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--hairline);
+      box-shadow: var(--shadow);
+      background: var(--panel2);
+    }
+    .avatar img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    h1{
+      margin: 8px 0 0;
+      font-size: 2.35rem;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .tagline{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* Section label like "/about" */
+    .label-row{
+      display:flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+    }
+    .label-row .label{
+      opacity: .85;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .about{
+      margin: 10px 0 0;
+      font-size: 1.12rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      max-width: 54ch;
+    }
+
+    .chips{
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid var(--hairline);
+      color: var(--chipText);
+      font-size: 0.95rem;
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* Social row like the example: icon button + label */
+    .socials{
+      margin-top: 12px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .social{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--btnBorder);
+      background: var(--btnBg);
+      transition: background .15s ease, transform .15s ease, color .15s ease;
+    }
+    .social:hover{
+      background: var(--btnBgHover);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+    .social:focus-visible{
+      outline: 2px solid rgba(120,140,255,.35);
+      outline-offset: 3px;
+    }
+
+    .icon{
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      opacity: .9;
+    }
+    .icon svg{
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      display:block;
+    }
+
+    footer{
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      padding: 0 2px;
+    }
+
+    /* Desktop polish: place avatar left of title like zoma.dev */
+    @media (min-width: 700px){
+      .wrap{ padding: 54px 22px 70px; }
+      .top{
+        grid-template-columns: 110px 1fr;
+        align-items: center;
+        gap: 18px;
+      }
+      .avatar{ width: 104px; height: 104px; }
+      h1{ font-size: 2.85rem; }
+      .tagline{ font-size: 1.1rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <main>
+      <section class="top" aria-label="Header">
+        <!-- Placeholder image: replace src with your photo later (e.g., /assets/petros.jpg) -->
+        <div class="avatar">
+          <img
+            alt="Petros profile photo"
+            src='data:image/svg+xml;utf8,
+              <svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+                <defs>
+                  <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="%2394a3b8" stop-opacity="0.65"/>
+                    <stop offset="1" stop-color="%2364748b" stop-opacity="0.65"/>
+                  </linearGradient>
+                </defs>
+                <rect width="240" height="240" rx="120" fill="url(%23g)"/>
+                <circle cx="120" cy="96" r="44" fill="%23ffffff" fill-opacity="0.28"/>
+                <path d="M48 212c18-42 52-64 72-64s54 22 72 64" fill="%23ffffff" fill-opacity="0.22"/>
+              </svg>'
+          />
+        </div>
+
+        <div>
+          <h1>Petros Kkallis Petrou</h1>
+          <p class="tagline">Product. Systems. Craft.</p>
+        </div>
+      </section>
+
+      <div class="label-row" aria-hidden="true">
+        <span class="label">/about</span>
+      </div>
+
+      <p class="about">
+        Based in Cyprus. I focus on the intersection of technology, UX, and business—turning complex problems into clear,
+        buildable product direction and aligning teams to ship thoughtful user experiences.
+      </p>
+
+      <!-- Optional: small “focus tags” like zoma.dev -->
+      <div class="chips" aria-label="Focus areas">
+        <span class="chip">Fintech</span>
+        <span class="chip">Product</span>
+        <span class="chip">UX</span>
+        <span class="chip">Systems</span>
+      </div>
+
+      <div class="label-row" aria-hidden="true">
+        <span class="label">/social</span>
+      </div>
+
+      <nav class="socials" aria-label="Social links">
+        <!-- Replace # with your LinkedIn URL -->
+        <a class="social" href="#" rel="me noopener" target="_blank">
+          <span class="icon" aria-hidden="true">
+            <!-- LinkedIn icon -->
+            <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.68H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          </span>
+          LinkedIn
+        </a>
+
+        <a class="social" href="mailto:hello@petrou.org">
+          <span class="icon" aria-hidden="true">
+            <!-- Mail icon -->
+            <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+          </span>
+          Email
+        </a>
+      </nav>
+
+      <footer>
+        © <span id="y"></span> Petros
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
