@@ -92,7 +92,7 @@
       max-width: var(--max);
     }
 
-    /* NEW: centered content column so it doesn't feel left-heavy */
+    /* Centered content column */
     .col{
       width: 100%;
       max-width: var(--col);
@@ -156,7 +156,6 @@
       font-size: 1.12rem;
       letter-spacing: -0.01em;
       color: var(--text);
-      /* removed max-width so the column controls width */
     }
 
     .chips{
@@ -253,22 +252,12 @@
     <main>
       <div class="col">
         <section class="top" aria-label="Header">
-          <!-- Placeholder image: replace src with your photo later (e.g., /assets/petros.jpg) -->
+          <!-- Put petros-profile-photo.png in the same folder as this HTML file -->
           <div class="avatar">
             <img
-              alt="Petros profile photo"
-              src='data:image/svg+xml;utf8,
-                <svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
-                  <defs>
-                    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0" stop-color="%2394a3b8" stop-opacity="0.65"/>
-                      <stop offset="1" stop-color="%2364748b" stop-opacity="0.65"/>
-                    </linearGradient>
-                  </defs>
-                  <rect width="240" height="240" rx="120" fill="url(%23g)"/>
-                  <circle cx="120" cy="96" r="44" fill="%23ffffff" fill-opacity="0.28"/>
-                  <path d="M48 212c18-42 52-64 72-64s54 22 72 64" fill="%23ffffff" fill-opacity="0.22"/>
-                </svg>'
+              alt="Petros Kkallis Petrou"
+              src="petros-profile-photo.png"
+              loading="lazy"
             />
           </div>
 
@@ -299,10 +288,8 @@
         </div>
 
         <nav class="socials" aria-label="Social links">
-          <!-- Replace # with your LinkedIn URL -->
-          <a class="social" href="#" rel="me noopener" target="_blank">
+          <a class="social" href="https://www.linkedin.com/in/petroskkallis" rel="me noopener" target="_blank">
             <span class="icon" aria-hidden="true">
-              <!-- LinkedIn icon -->
               <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.68H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
             </span>
             LinkedIn
@@ -310,7 +297,6 @@
 
           <a class="social" href="mailto:hello@petrou.org">
             <span class="icon" aria-hidden="true">
-              <!-- Mail icon -->
               <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
             </span>
             Email
